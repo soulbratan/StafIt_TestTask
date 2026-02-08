@@ -31,3 +31,13 @@ def sample_csv_file() -> Generator:
     # Удаляем после теста
     if file_path.exists():
         file_path.unlink()
+
+
+@pytest.fixture
+def country_gdp_dict() -> dict:
+    """Возвращает готовый словарь с группированными данными."""
+    return {
+        "USA": [20000.0, 21000.0],
+        "Canada": [1800.0, 1900.0],
+        "Germany": [3800.0, 3900.0],
+    }
