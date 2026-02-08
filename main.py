@@ -1,16 +1,47 @@
-# This is a sample Python script.
+import sys
 
-# Press Shift+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
+from tabulate import tabulate
 
-
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
+from src.cli import parse_args
+from src.data_processor import process_country_data, read_csv_files
+from src.report_generators import get_report_generator
 
 
-# Press the green button in the gutter to run the script.
-if __name__ == '__main__':
-    print_hi('PyCharm')
+def main() -> None:
+    try:
+        args = parse_args()
 
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+        # Чтение данных
+        data = read_csv_files(args.files)
+        group_data = process_country_data(data)
+
+        # Получение генератора отчета
+        generator = get_report_generator(args.report)
+
+        # Генерация отчета
+        report_data = generator(group_data)
+
+        # Вывод в консоль
+        headers = ["Страна", "Средний ВВП"]
+        print(
+            tabulate(
+                report_data, headers=headers, tablefmt="grid", floatfmt=".2f"
+            )
+        )
+
+    except FileNotFoundError as e:
+        print(f"Ошибка: Файл не найден - {e}", file=sys.stderr)
+        sys.exit(1)
+    except ValueError as e:
+        print(f"Ошибка: {e}", file=sys.stderr)
+        sys.exit(1)
+    except Exception as e:
+        print(f"Неожиданная ошибка: {e}", file=sys.stderr)
+        sys.exit(1)
+    except SystemExit:
+        # argparse выведет сообщение сам, если не будут введены аргументы
+        sys.exit(2)
+
+
+if __name__ == "__main__":
+    main()
