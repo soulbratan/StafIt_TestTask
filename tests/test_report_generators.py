@@ -1,8 +1,7 @@
 import pytest
-from src.report_generators import (
-    get_report_generator,
-    generate_average_gdp_report,
-)
+
+from src.report_generators import (generate_average_gdp_report,
+                                   get_report_generator)
 
 
 def test_get_report_generator_exists():

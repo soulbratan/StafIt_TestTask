@@ -1,6 +1,8 @@
 import sys
 from unittest.mock import patch
+
 import pytest
+
 from src.cli import parse_args
 
 

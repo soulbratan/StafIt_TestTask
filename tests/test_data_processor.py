@@ -1,9 +1,7 @@
 import pytest
-from src.data_processor import (
-    read_csv_files,
-    process_country_data,
-    calculate_average_gdp,
-)
+
+from src.data_processor import (calculate_average_gdp, process_country_data,
+                                read_csv_files)
 
 
 def test_read_csv_files(sample_csv_file):

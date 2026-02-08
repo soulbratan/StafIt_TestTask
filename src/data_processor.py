@@ -24,6 +24,7 @@ def read_csv_files(file_paths: List[Path]) -> List[Dict[str, Any]]:
 
     return all_data
 
+
 def process_country_data(data: List[Dict[str, Any]]) -> Dict[str, List[float]]:
     """
     Группировка данных по странам для расчета среднего ВВП.
@@ -45,6 +46,7 @@ def process_country_data(data: List[Dict[str, Any]]) -> Dict[str, List[float]]:
             continue
 
     return country_gdp
+
 
 def calculate_average_gdp(
     country_gdp: Dict[str, List[float]],

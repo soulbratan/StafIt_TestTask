@@ -1,9 +1,9 @@
+import csv
+import tempfile
+from pathlib import Path
 from typing import Generator
 
 import pytest
-import tempfile
-import csv
-from pathlib import Path
 
 
 @pytest.fixture
