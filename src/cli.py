@@ -1,7 +1,12 @@
 import argparse
 
 
-def parse_args():
+def parse_args() -> argparse.Namespace:
+    """
+    Функция для работы с аргументами из коммандной строки.
+    --files: путь к файлам;
+    --report: название отчёта.
+    """
     parser = argparse.ArgumentParser(
         description="Анализ макроэкономических данных"
     )
